@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-"\u001b[200~@vueform/slider", "@vueform/slider@vueform/slider":
-  version "2.1.7"
-  resolved "https://codeload.github.com/vueform/slider/tar.gz/2004cec910c3da83c60a51dc47f92db22cc979b8"
-
 "@aashutoshrathi/word-wrap@^1.2.3":
   version "1.2.6"
   resolved "https://registry.npmmirror.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz"
@@ -5033,10 +5029,10 @@ vue-router@^4.2.5:
   dependencies:
     "@vue/devtools-api" "^6.5.0"
 
-vue-slider-component@^3.2.24:
-  version "3.2.24"
-  resolved "https://registry.yarnpkg.com/vue-slider-component/-/vue-slider-component-3.2.24.tgz#9c931da3d10d0efde361138626a76d21c4359fd5"
-  integrity sha512-28hfotAL/CPXPwqHgVFyUwUEV0zweoc2wW0bgraGkoIcRZGlFjk8caYJLE8+Luug5t3b9tJm/NyDXpyIdmcYZg==
+vue-slider-component@3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/vue-slider-component/-/vue-slider-component-3.2.1.tgz#cb27f935519df69204bf0165e53a526e8b4c8f4a"
+  integrity sha512-5bGbArTvTW12hJAfbzkiet31OmqoeTvo60RssQdIgzJXIMyZKSZQVT8iLaJbOMRDhWNEbSsl7M4l+lqf6o4Eeg==
   dependencies:
     core-js "^3.6.5"
     vue-property-decorator "^8.0.0"
