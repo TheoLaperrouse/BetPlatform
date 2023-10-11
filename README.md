@@ -1,12 +1,6 @@
-# Template Vite with Vue3 using TS + Eslint + Prettier + TailwindCSS + SemanticRelease
+# Bet Platform
 
-## Use this template 
+ ## Utilisation
 
-[Click here](https://github.com/new?template_name=TemplateViteVue3&template_owner=TheoLaperrouse)
-
-## CI
-
-To make Semantic Release work with your project  (allowing Github Actions to commit CHANGELOG.md) :
-- Go to Settings -> Actions -> General -> Workflow permissions
-- Check `Read and write permission`
-
+- Se connecter à son compte
+- Renseigner ses paris

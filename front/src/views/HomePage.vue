@@ -3,6 +3,7 @@
         <BetSlider />
     </div>
 </template>
+
 <script>
 import BetSlider from '@/components/BetSlider.vue';
 
