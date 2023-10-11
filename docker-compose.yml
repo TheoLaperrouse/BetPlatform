@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  back:
+    build: back/.
+    ports:
+      - "5000:5000"
+    container_name: fastapi
+    depends_on:
+      - db
+  front:
+    build: front/.
+    ports:
+     - "80:8080"
+    container_name: vue
+  db:
+    image: postgres:latest
+    environment:
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+        - '5432:5432'
+    volumes:
+        - postgres_data:/var/lib/postgresql/data
+        - ./db-init-scripts:/docker-entrypoint-initdb.d
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+        PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+        PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+        PGADMIN_LISTEN_ADDRESS: '0.0.0.0'
+    ports:
+        - '5050:80'
+    volumes:
+        - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+        - db

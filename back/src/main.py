@@ -2,7 +2,7 @@ import logging
 import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
-from src.routers import bet
+from src.routers import bets, users
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 def init_routers(_app):
     '''Initialize routers'''
-    routers = [players, uuid, matches, teams, clubs]
+    routers = [bets, users]
     for router in routers:
         _app.include_router(router.router)
 
@@ -25,4 +25,4 @@ async def redirect_to_docs():
     return RedirectResponse(url='/docs')
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=5000)

@@ -1,4 +1,6 @@
-cd fastapi_fftt
+#!/bin/bash
+
+export $(cat .env | xargs)
+docker-compose down
 git pull
-sudo docker compose down
-sudo docker compose up -d --build
+docker-compose up --build -d
