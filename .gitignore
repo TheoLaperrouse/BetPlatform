@@ -1,1 +1,4 @@
 .env
+/postgres_data
+/pgadmin_data
+/db-init-scripts

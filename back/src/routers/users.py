@@ -1,11 +1,11 @@
 from fastapi import APIRouter
 
 router = APIRouter(
-    prefix="/players",
-    tags=["players"]
+    prefix="/users",
+    tags=["users"]
 )
 
-@router.get()
-def get_players():
-    '''Get all the bets'''
-    return
+@router.get("/")
+def get_users():
+    '''Get all users'''
+    return []

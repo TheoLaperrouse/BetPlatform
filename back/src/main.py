@@ -2,6 +2,7 @@ import logging
 import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
+from fastapi.middleware.cors import CORSMiddleware
 from src.routers import bets, users
 
 logging.basicConfig(level=logging.INFO)
@@ -16,6 +17,13 @@ def init_routers(_app):
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 init_routers(app)
 
