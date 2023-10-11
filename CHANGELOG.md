@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.1.0...v1.1.1) (2023-10-11)
+
+
+### Bug Fixes
+
+* Fix Semantic release ([c51b143](https://github.com/TheoLaperrouse/BetPlatform/commit/c51b143d0c77b75e527cb4e7521c397271968af7))
+
 # [1.1.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.0.0...v1.1.0) (2023-10-11)
 
 
