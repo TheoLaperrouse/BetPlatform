@@ -11,7 +11,7 @@ services:
   front:
     build: front/.
     ports:
-     - "80:8080"
+     - "8080:8080"
     container_name: vue
   db:
     image: postgres:latest
