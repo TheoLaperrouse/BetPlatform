@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.1.1...v1.1.2) (2023-10-13)
+
+
+### Bug Fixes
+
+* Add a redeployment job in CI ([e30e2f0](https://github.com/TheoLaperrouse/BetPlatform/commit/e30e2f0dfc75aad63df50f03e30d60bee8334af8))
+
 ## [1.1.1](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.1.0...v1.1.1) (2023-10-11)
 
 
