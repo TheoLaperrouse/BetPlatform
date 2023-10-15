@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.2.0...v1.3.0) (2023-10-15)
+
+
+### Features
+
+* Add models/schemas/routes and connection to pg ([be6c13d](https://github.com/TheoLaperrouse/BetPlatform/commit/be6c13d03345f62146cd5b9846614dc0feff48d1))
+
 # [1.2.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.1.1...v1.2.0) (2023-10-15)
 
 
