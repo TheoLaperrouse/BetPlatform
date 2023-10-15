@@ -1,8 +1,28 @@
 <template>
     <div class="min-h-screen flex items-center justify-center bg-gray-100">
         <div class="bg-white p-8 rounded-lg shadow-md w-96">
-            <h2 class="text-2xl font-semibold mb-6">Connexion</h2>
-            <form @submit.prevent="login">
+            <h2 class="text-2xl font-semibold mb-6">Créer un compte</h2>
+            <form @submit.prevent="register">
+                <div class="mb-4">
+                    <label for="firstName" class="block text-gray-600 font-medium text-sm">Prénom</label>
+                    <input
+                        type="text"
+                        id="firstName"
+                        v-model="firstName"
+                        class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                        required
+                    />
+                </div>
+                <div class="mb-4">
+                    <label for="lastName" class="block text-gray-600 font-medium text-sm">Nom</label>
+                    <input
+                        type="text"
+                        id="lastName"
+                        v-model="lastName"
+                        class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                        required
+                    />
+                </div>
                 <div class="mb-4">
                     <label for="email" class="block text-gray-600 font-medium text-sm">Email</label>
                     <input
@@ -23,33 +43,40 @@
                         required
                     />
                 </div>
+
                 <div class="mb-4">
                     <button
                         type="submit"
                         class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring"
                     >
-                        Confirmer
+                        S'inscrire
                     </button>
                 </div>
             </form>
-            <router-link to="/register" class="text-blue-500 hover:underline"
-                >Pas de compte ? Créer votre compte</router-link
-            >
         </div>
     </div>
 </template>
 
 <script>
+import { createUser } from '../services/users.service';
+
 export default {
     data() {
         return {
+            firstName: '',
+            lastName: '',
             email: '',
             password: '',
         };
     },
     methods: {
-        login() {
-            this.$router.push('/');
+        async register() {
+            await createUser({
+                firstName: this.firstName,
+                lastName: this.lastName,
+                email: this.email,
+                password: this.password,
+            });
         },
     },
 };
