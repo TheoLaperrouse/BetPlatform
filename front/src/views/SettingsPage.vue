@@ -1,24 +1,48 @@
 <template>
-    <div>
+    <div class="px-4 py-8">
         <h2 class="text-2xl font-semibold mb-4">Paramètres</h2>
-        <form @submit.prevent="saveSettings">
+        <form @submit.prevent="saveUser" class="max-w-md mx-auto space-y-4">
             <div class="mb-4">
-                <label for="firstName">Prénom</label>
-                <input type="text" id="firstName" v-model="user.firstName" />
+                <label for="firstName" class="text-gray-600 font-medium">Prénom</label>
+                <input
+                    type="text"
+                    id="firstName"
+                    v-model="user.firstName"
+                    class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                />
             </div>
             <div class="mb-4">
-                <label for="lastName">Nom</label>
-                <input type="text" id="lastName" v-model="user.lastName" />
+                <label for="lastName" class="text-gray-600 font-medium">Nom</label>
+                <input
+                    type="text"
+                    id="lastName"
+                    v-model="user.lastName"
+                    class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                />
             </div>
             <div class="mb-4">
-                <label for="email">Email</label>
-                <input type="text" id="email" v-model="user.email" />
+                <label for="email" class="text-gray-600 font-medium">Email</label>
+                <input
+                    type="text"
+                    id="email"
+                    v-model="user.email"
+                    class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                />
             </div>
             <div class="mb-4">
-                <label for="password">Mot de passe</label>
-                <input type="password" id="password" v-model="user.password" />
+                <label for="password" class="text-gray-600 font-medium">Mot de passe</label>
+                <input
+                    type="password"
+                    id="password"
+                    v-model="user.password"
+                    class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                />
             </div>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+            <button
+                type="submit"
+                class="w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
+                @click="updateUser()"
+            >
                 Enregistrer
             </button>
         </form>
@@ -26,6 +50,7 @@
 </template>
 
 <script>
+import { updateUser } from '@/services/users.service';
 export default {
     data() {
         return {
@@ -38,8 +63,8 @@ export default {
         };
     },
     methods: {
-        saveUser() {
-            return;
+        updateUser() {
+            return updateUser(this.user, '');
         },
     },
 };

@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "my-project"
+version = "1.0.0"
+description = "A sample project"
+authors= ["Théo Laperrouse"]
+
+[tool.poetry.dependencies]
+python = "^3.8.1"
+uvicorn = "^0.23.2"
+fastapi = "^0.103.2"
+sqlalchemy = "^2.0.22"
+poetry-dotenv = "^0.4.0"
+passlib = "^1.7.4"

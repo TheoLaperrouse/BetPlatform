@@ -1,12 +1,9 @@
-import logging
 import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
-from src.routers import bets, users
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from app.routers import bets, users
+from app.database import SessionLocal
 
 
 def init_routers(_app):
@@ -18,6 +15,7 @@ def init_routers(_app):
 
 app = FastAPI()
 
+        
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -25,7 +23,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
 init_routers(app)
+
 
 @app.get("/", include_in_schema=False)
 async def redirect_to_docs():
