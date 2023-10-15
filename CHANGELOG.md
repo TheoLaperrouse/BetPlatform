@@ -1,3 +1,23 @@
+# [1.2.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.1.1...v1.2.0) (2023-10-15)
+
+
+### Bug Fixes
+
+* Add a redeployment job in CI ([5a3fbc3](https://github.com/TheoLaperrouse/BetPlatform/commit/5a3fbc3cdd01e91af280215061ba8736def18a81))
+
+
+### Features
+
+* Add a CreateUserPage ([edcae8b](https://github.com/TheoLaperrouse/BetPlatform/commit/edcae8b347d9e8c05d784a903b29976109c06921))
+* Add a login Page ([4497d14](https://github.com/TheoLaperrouse/BetPlatform/commit/4497d1488bceb3e0f01d8ec89c2593cc43c35ed0))
+* Add a MenuPanel ([2a9e6e8](https://github.com/TheoLaperrouse/BetPlatform/commit/2a9e6e83b8cd6fbefe6586f5b57e39b4ec7f0af4))
+* Add a RankingPage ([6a1d54c](https://github.com/TheoLaperrouse/BetPlatform/commit/6a1d54c96552c611774acf3aa27ab13e1ddb0868))
+* Add a Register/Profile Component ([069e0c5](https://github.com/TheoLaperrouse/BetPlatform/commit/069e0c54afcb49222d1cfe166cc6cd09924b7935))
+* add alert ([55ede59](https://github.com/TheoLaperrouse/BetPlatform/commit/55ede595df1385dd6a38b39c068d1f9cbe6527a8))
+* Add Bet components ([d3671ca](https://github.com/TheoLaperrouse/BetPlatform/commit/d3671caa1592fca5f32c7e3459454e882c27c962))
+* add services to get bets/users ([31fe4d8](https://github.com/TheoLaperrouse/BetPlatform/commit/31fe4d8f05def05d17b69b57d07bb0c08d9f6bfd))
+* Toast on error / Improve Router and menu ([9eab861](https://github.com/TheoLaperrouse/BetPlatform/commit/9eab861d960a193e445a6221c581b13a56f91d35))
+
 ## [1.1.2](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.1.1...v1.1.2) (2023-10-13)
 
 
