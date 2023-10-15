@@ -1,4 +1,5 @@
-const baseURL = 'http://localhost:8080';
+import { Toast } from '@/components/toast.ts';
+import { baseURL } from './api.config';
 
 export const createUser = async (userData) => {
     const response = await fetch(`${baseURL}/users`, {
@@ -10,7 +11,10 @@ export const createUser = async (userData) => {
     });
 
     if (!response.ok) {
-        throw new Error("Échec de la création de l'utilisateur");
+        return Toast.fire({
+            icon: 'error',
+            title: "Erreur lors de la création de l'utilisateur",
+        });
     }
 
     const user = await response.json();
@@ -26,7 +30,10 @@ export const getRanking = async () => {
     });
 
     if (!response.ok) {
-        throw new Error('Échec de récupération du classement');
+        return Toast.fire({
+            icon: 'error',
+            title: 'Erreur lors de la récupération du classement',
+        });
     }
 
     const user = await response.json();
@@ -43,7 +50,10 @@ export const login = async (userData) => {
     });
 
     if (!response.ok) {
-        throw new Error('Échec lors de la connection');
+        return Toast.fire({
+            icon: 'error',
+            title: 'Erreur lors de la connection',
+        });
     }
 
     const user = await response.json();

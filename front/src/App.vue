@@ -1,7 +1,22 @@
 <template>
     <div id="app">
+        <template v-if="isAppRoute">
+            <MenuPanel />
+        </template>
         <router-view></router-view>
     </div>
 </template>
 
-<script lang="ts"></script>
+<script>
+import MenuPanel from '@/components/MenuPanel.vue';
+export default {
+    components: {
+        MenuPanel,
+    },
+    computed: {
+        isAppRoute() {
+            return !['Signin', 'Register'].includes(this.$route.name);
+        },
+    },
+};
+</script>

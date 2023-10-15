@@ -1,5 +1,5 @@
-// betService.js
-const baseURL = 'http://localhost:8080'; // L'URL de votre API
+import { Toast } from '@/components/toast.ts';
+import { baseURL } from './api.config';
 
 export const sendBets = async (betsData) => {
     const response = await fetch(`${baseURL}/bets`, {
@@ -11,7 +11,10 @@ export const sendBets = async (betsData) => {
     });
 
     if (!response.ok) {
-        throw new Error("Échec de l'envoi des paris");
+        return Toast.fire({
+            icon: 'error',
+            title: "Erreur lors de l'envoi des paris",
+        });
     }
 
     const bets = await response.json();
@@ -22,7 +25,10 @@ export const getMyBets = async (userId) => {
     const response = await fetch(`${baseURL}/bets/${userId}`);
 
     if (!response.ok) {
-        throw new Error('Échec de la récupération des paris');
+        return Toast.fire({
+            icon: 'error',
+            title: 'Erreur lors de la récupération des paris',
+        });
     }
 
     const bets = await response.json();
