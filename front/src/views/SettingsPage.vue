@@ -1,6 +1,6 @@
 <template>
     <div class="px-4 py-8">
-        <h2 class="text-2xl font-semibold mb-4">Paramètres</h2>
+        <h2 class="text-2xl font-semibold text-center p-4">Paramètres</h2>
         <form @submit.prevent="saveUser" class="max-w-md mx-auto space-y-4">
             <div class="mb-4">
                 <label for="firstName" class="text-gray-600 font-medium">Prénom</label>

@@ -1,9 +1,9 @@
 <template>
-    <div id="app">
+    <div id="app" class="flex">
         <template v-if="isAppRoute">
             <MenuPanel />
         </template>
-        <router-view></router-view>
+        <router-view class="flex-auto" />
     </div>
 </template>
 
