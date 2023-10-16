@@ -3,8 +3,9 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import bets, users
-from app.database import SessionLocal
-
+from app.database import engine
+from app.models.user import User
+from app.models.bet import Bet
 
 def init_routers(_app):
     '''Initialize routers'''
@@ -22,13 +23,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+User.metadata.create_all(bind=engine)
+Bet.metadata.create_all(bind=engine)
 
 init_routers(app)
 

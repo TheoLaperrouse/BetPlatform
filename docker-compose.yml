@@ -5,14 +5,12 @@ services:
     build: back/.
     ports:
       - "5000:5000"
-    container_name: fastapi
     depends_on:
       - db
   front:
     build: front/.
     ports:
      - "8080:8080"
-    container_name: vue
   db:
     image: postgres:latest
     environment:

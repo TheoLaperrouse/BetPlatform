@@ -2,11 +2,8 @@
 import uuid
 from sqlalchemy import Column, String
 from sqlalchemy.dialects.postgresql import UUID 
-
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
-
+from app.database import Base
+from sqlalchemy.orm import relationship
 class User(Base):
     __tablename__ = 'users'
 
@@ -14,4 +11,9 @@ class User(Base):
     first_name = Column(String)
     last_name = Column(String)
     email = Column(String, index=True, unique=True, nullable=False)
-    hashed_password = Column(String)
+    password = Column(String)
+    bets = relationship("Bet", back_populates="user")
+    
+    @classmethod
+    def get_by_email(cls, db, email: str):
+        return db.query(cls).filter(cls.email == email).first()

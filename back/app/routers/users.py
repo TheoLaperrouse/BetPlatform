@@ -1,8 +1,12 @@
-from fastapi import APIRouter
-from app.schemas.user import User
+from fastapi import APIRouter, HTTPException
+from app.schemas.user import UserCreate, UserCredentials
+from app.models.user import User
 from passlib.context import CryptContext
+from app.auth import create_access_token
 from app.database import SessionLocal
 
+db = SessionLocal()
+    
 router = APIRouter(
     prefix="/users",
     tags=["users"]
@@ -15,18 +19,27 @@ def get_users():
     '''Get all users'''
     return []
 
-@router.post("/users/", response_model=User)
-def create_user(user: User):
-    db_user = User(
-        first_name=user.first_name,
-        last_name=user.last_name,
-        email=user.email,
-        hashed_password=pwd_context.hash(user.password)
-    )
-
-    db = SessionLocal()
+@router.post("/", response_model=UserCreate)
+async def create_user(user: UserCreate):
+    existing_user = User.get_by_email(db, user.email)
+    if existing_user:
+        raise HTTPException(status_code=409, detail="Cet utilisateur existe déjà")
+    user.password = pwd_context.hash(user.password)  
+    
+    db_user = User(**user.model_dump())
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
-    db.close()
     return db_user
+
+@router.post("/login")
+async def login(user: UserCredentials):
+    db_user = User.get_by_email(db, user.email)
+    if db_user is None:
+        raise HTTPException(status_code=400, detail="L'email ne correspond à aucun utilisateur")
+    
+    if not pwd_context.verify(user.password, db_user.password):
+        raise HTTPException(status_code=400, detail="Mot de passe incorrect")
+    
+    access_token = create_access_token(data={"email": db_user.email})
+    return {"access_token": access_token, "token_type": "bearer"}

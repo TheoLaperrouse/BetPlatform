@@ -27,6 +27,7 @@
                     <button
                         type="submit"
                         class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring"
+                        @click="connect"
                     >
                         Confirmer
                     </button>
@@ -40,6 +41,7 @@
 </template>
 
 <script>
+import { login } from '@/services/users.service';
 export default {
     data() {
         return {
@@ -48,8 +50,12 @@ export default {
         };
     },
     methods: {
-        login() {
-            this.$router.push('/');
+        async connect() {
+            const { access_token } = await login({ email, password });
+            if (access_token) {
+                localStorage.setItem('jwtToken', access_token);
+                this.$router.push('/');
+            }
         },
     },
 };

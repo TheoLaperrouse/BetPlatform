@@ -8,6 +8,7 @@ class UserCreate(BaseModel):
 
 class User(UserCreate):
     id: UUID4
-
-class UserInDB(User):
-    hashed_password: str
+    
+class UserCredentials(BaseModel):
+    email: str
+    password: str

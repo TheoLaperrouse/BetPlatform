@@ -61,7 +61,7 @@ export const getRanking = async () => {
 };
 
 export const login = async (userData) => {
-    const response = await fetch(`${baseURL}/login`, {
+    const response = await fetch(`${baseURL}/users/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
