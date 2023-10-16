@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.3.0...v1.4.0) (2023-10-16)
+
+
+### Bug Fixes
+
+* Fix FlexBox with MenuPanel ([fe1132e](https://github.com/TheoLaperrouse/BetPlatform/commit/fe1132e356d975b330253ff31520c9a1f372c86a))
+
+
+### Features
+
+* Improvment on RankingPage ([063f6a5](https://github.com/TheoLaperrouse/BetPlatform/commit/063f6a50498be5cd7dbea356e61dc713b09c635f))
+
 # [1.3.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.2.0...v1.3.0) (2023-10-15)
 
 
