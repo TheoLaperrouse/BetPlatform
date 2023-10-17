@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.5.0...v1.6.0) (2023-10-17)
+
+
+### Features
+
+* Add matches in DB and back ([7416e9a](https://github.com/TheoLaperrouse/BetPlatform/commit/7416e9a5eb09181cf5c0106d43f8bc524269c528))
+
 # [1.5.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.4.0...v1.5.0) (2023-10-16)
 
 
