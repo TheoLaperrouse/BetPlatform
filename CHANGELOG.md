@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.4.0...v1.5.0) (2023-10-16)
+
+
+### Features
+
+* Bind back to db and fix createUser ([d2a6769](https://github.com/TheoLaperrouse/BetPlatform/commit/d2a676916b12f567ea974d4a6112bc6f1d818e2e))
+
 # [1.4.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.3.0...v1.4.0) (2023-10-16)
 
 
