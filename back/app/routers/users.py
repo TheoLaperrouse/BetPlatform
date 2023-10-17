@@ -28,7 +28,7 @@ def get_users():
     return sorted(users, key=lambda user: user.points, reverse=True)
 
 
-@router.post("/", response_model=UserCreate)
+@router.post("/")
 async def create_user(user: UserCreate):
     existing_user = User.get_by_email(db, user.email)
     if existing_user:
@@ -39,7 +39,8 @@ async def create_user(user: UserCreate):
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
-    return db_user
+    access_token = create_access_token(data={"email": db_user.email})
+    return {"access_token": access_token, "token_type": "bearer"}
 
 @router.post("/login")
 async def login(user: UserCredentials):

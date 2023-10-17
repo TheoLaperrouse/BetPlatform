@@ -77,7 +77,8 @@ export default {
                 email: this.email,
                 password: this.password,
             });
-
+            // eslint-disable-next-line no-console
+            console.log(access_token);
             if (access_token) {
                 localStorage.setItem('jwtToken', access_token);
             }

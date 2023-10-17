@@ -20,4 +20,15 @@ const router = createRouter({
     routes,
 });
 
+router.beforeEach((to, from, next) => {
+    const publicPages = ['/signin', '/register'];
+    const authRequired = !publicPages.includes(to.path);
+    const loggedIn = localStorage.getItem('jwtToken');
+    if (authRequired && !loggedIn) {
+        next('/signin');
+    } else {
+        next();
+    }
+});
+
 export default router;

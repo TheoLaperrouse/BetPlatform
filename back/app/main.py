@@ -6,6 +6,7 @@ from app.routers import bets, users
 from app.database import engine
 from app.models.user import User
 from app.models.bet import Bet
+from app.models.match import Match
 
 def init_routers(_app):
     '''Initialize routers'''
@@ -23,6 +24,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+Match.metadata.create_all(bind=engine)
 User.metadata.create_all(bind=engine)
 Bet.metadata.create_all(bind=engine)
 

@@ -11,6 +11,12 @@
                     <span :title="link.text">{{ link.text }}</span>
                 </router-link>
             </li>
+            <li class="py-4 ml-6 pt-4">
+                <router-link :to="githubLink" class="flex items-center">
+                    <font-awesome-icon :icon="faGithub" class="mr-2" />
+                    <span> Repo Github </span>
+                </router-link>
+            </li>
         </ul>
         <div class="fixed bottom-4 left-4">
             <button
@@ -39,6 +45,7 @@ import {
     faArrowLeft,
     faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 export default {
@@ -53,7 +60,6 @@ export default {
                 { to: '/bets', text: 'Paris', icon: faFlag },
                 { to: '/ranking', text: 'Classement', icon: faTrophy },
                 { to: '/settings', text: 'Paramètres', icon: faGear },
-                { to: 'https://github.com/TheoLaperrouse/BetPlatform', icon: faGithub },
             ],
         };
     },
@@ -61,9 +67,12 @@ export default {
         this.faSignOutAlt = faSignOutAlt;
         this.faArrowLeft = faArrowLeft;
         this.faArrowRight = faArrowRight;
+        this.faGithub = faGithub;
+        this.githubLink = 'https://github.com/TheoLaperrouse/BetPlatform';
     },
     methods: {
         logout() {
+            localStorage.removeItem('jwtToken');
             this.$router.push('/signin');
         },
         toggleMenu() {
