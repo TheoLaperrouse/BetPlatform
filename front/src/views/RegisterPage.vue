@@ -4,21 +4,21 @@
             <h2 class="text-2xl font-semibold mb-6">Créer un compte</h2>
             <form @submit.prevent="register">
                 <div class="mb-4">
-                    <label for="firstName" class="block text-gray-600 font-medium text-sm">Prénom</label>
+                    <label for="first_name" class="block text-gray-600 font-medium text-sm">Prénom</label>
                     <input
                         type="text"
-                        id="firstName"
-                        v-model="firstName"
+                        id="first_name"
+                        v-model="first_name"
                         class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                         required
                     />
                 </div>
                 <div class="mb-4">
-                    <label for="lastName" class="block text-gray-600 font-medium text-sm">Nom</label>
+                    <label for="last_name" class="block text-gray-600 font-medium text-sm">Nom</label>
                     <input
                         type="text"
-                        id="lastName"
-                        v-model="lastName"
+                        id="last_name"
+                        v-model="last_name"
                         class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                         required
                     />
@@ -63,20 +63,26 @@ import { createUser } from '../services/users.service';
 export default {
     data() {
         return {
-            firstName: '',
-            lastName: '',
+            first_name: '',
+            last_name: '',
             email: '',
             password: '',
         };
     },
     methods: {
         async register() {
-            await createUser({
-                firstName: this.firstName,
-                lastName: this.lastName,
+            const { access_token } = await createUser({
+                first_name: this.first_name,
+                last_name: this.last_name,
                 email: this.email,
                 password: this.password,
             });
+
+            if (access_token) {
+                localStorage.setItem('jwtToken', access_token);
+            }
+
+            this.$router.push('/');
         },
     },
 };

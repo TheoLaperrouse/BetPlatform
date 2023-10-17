@@ -53,6 +53,7 @@ export default {
                 { to: '/bets', text: 'Paris', icon: faFlag },
                 { to: '/ranking', text: 'Classement', icon: faTrophy },
                 { to: '/settings', text: 'Paramètres', icon: faGear },
+                { to: 'https://github.com/TheoLaperrouse/BetPlatform', icon: faGithub },
             ],
         };
     },

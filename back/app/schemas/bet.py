@@ -1,16 +1,19 @@
 from pydantic import BaseModel
-from typing import List, UUID
 
-class BetCreate(BaseModel):
-    user_id: UUID
-    match_id: UUID
-    team_selected: str
+class BetBase(BaseModel):
+    match_day: int
+    teams: str
+    user_id: int
 
-class Bet(BaseModel):
-    id: UUID
-    user_id: UUID
-    match_id: UUID
-    team_selected: str
+class BetCreate(BetBase):
+    pass
 
-class BetInResponse(BaseModel):
-    bets: List[Bet]
+class BetUpdate(BetBase):
+    pass
+
+class Bet(BetBase):
+    id: int
+    created_at: str
+
+    class Config:
+        orm_mode = True

@@ -3,20 +3,20 @@
         <h2 class="text-2xl font-semibold text-center p-4">Paramètres</h2>
         <form @submit.prevent="saveUser" class="max-w-md mx-auto space-y-4">
             <div class="mb-4">
-                <label for="firstName" class="text-gray-600 font-medium">Prénom</label>
+                <label for="first_name" class="text-gray-600 font-medium">Prénom</label>
                 <input
                     type="text"
-                    id="firstName"
-                    v-model="user.firstName"
+                    id="first_name"
+                    v-model="user.first_name"
                     class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 />
             </div>
             <div class="mb-4">
-                <label for="lastName" class="text-gray-600 font-medium">Nom</label>
+                <label for="last_name" class="text-gray-600 font-medium">Nom</label>
                 <input
                     type="text"
-                    id="lastName"
-                    v-model="user.lastName"
+                    id="last_name"
+                    v-model="user.last_name"
                     class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 />
             </div>
@@ -55,8 +55,8 @@ export default {
     data() {
         return {
             user: {
-                firstName: '',
-                lastName: '',
+                first_name: '',
+                last_name: '',
                 email: '',
                 password: '',
             },

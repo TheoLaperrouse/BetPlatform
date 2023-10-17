@@ -1,24 +1,30 @@
 import { Toast } from '@/components/toast.ts';
 import { baseURL } from './api.config';
 
-export const createUser = async (userData) => {
+export const createUser = async (user) => {
     const response = await fetch(`${baseURL}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify({
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            password: user.password,
+        }),
     });
 
     if (!response.ok) {
+        const { detail } = await response.json();
         return Toast.fire({
             icon: 'error',
-            title: "Erreur lors de la création de l'utilisateur",
+            title: detail,
         });
     }
 
-    const user = await response.json();
-    return user;
+    const token = await response.json();
+    return token;
 };
 
 export const updateUser = async (userData, userId) => {
@@ -41,8 +47,8 @@ export const updateUser = async (userData, userId) => {
     return user;
 };
 
-export const getRanking = async () => {
-    const response = await fetch(`${baseURL}/users/ranking`, {
+export const getUsers = async () => {
+    const response = await fetch(`${baseURL}/users`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -56,8 +62,8 @@ export const getRanking = async () => {
         });
     }
 
-    const user = await response.json();
-    return user;
+    const users = await response.json();
+    return users;
 };
 
 export const login = async (userData) => {
@@ -66,7 +72,7 @@ export const login = async (userData) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify({ userData }),
     });
 
     if (!response.ok) {

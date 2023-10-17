@@ -54,8 +54,8 @@ export default {
             const { access_token } = await login({ email, password });
             if (access_token) {
                 localStorage.setItem('jwtToken', access_token);
-                this.$router.push('/');
             }
+            this.$router.push('/');
         },
     },
 };

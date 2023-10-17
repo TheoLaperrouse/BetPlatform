@@ -17,13 +17,22 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 @router.get("/")
 def get_users():
     '''Get all users'''
-    return []
+    users = db.query(User).all().copy()
+    for user in users:
+        if user.password and user.id :
+            del user.password
+            del user.id
+        user.correct_bets = 0
+        user.perfect_bets = 0
+        user.points =  user.perfect_bets * 2 +  user.correct_bets
+    return sorted(users, key=lambda user: user.points, reverse=True)
+
 
 @router.post("/", response_model=UserCreate)
 async def create_user(user: UserCreate):
     existing_user = User.get_by_email(db, user.email)
     if existing_user:
-        raise HTTPException(status_code=409, detail="Cet utilisateur existe déjà")
+        raise HTTPException(status_code=409, detail="L'email est déjà associé à un utilisateur")
     user.password = pwd_context.hash(user.password)  
     
     db_user = User(**user.model_dump())

@@ -19,10 +19,10 @@
                         </span>
                         {{ index + 1 }}
                     </td>
-                    <td class="table-cell">{{ player.name }}</td>
-                    <td class="table-cell">{{ player.perfectBets }}</td>
-                    <td class="table-cell">{{ player.correctBets }}</td>
-                    <td class="table-cell">{{ player.points }}</td>
+                    <td class="table-cell">{{ `${player.first_name} ${player.last_name}` }}</td>
+                    <td class="table-cell">{{ player?.perfect_bets }}</td>
+                    <td class="table-cell">{{ player?.correct_bets }}</td>
+                    <td class="table-cell">{{ player?.points }}</td>
                 </tr>
             </tbody>
         </table>
@@ -32,24 +32,20 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
+import { getUsers } from '../services/users.service';
 
 export default {
     data() {
         return {
-            players: [
-                { id: '1', name: 'Théo Laperrouse', points: 5, perfectBets: 1, correctBets: 2 },
-                { id: '2', name: 'A', points: 4, perfectBets: 1, correctBets: 2 },
-                { id: '3', name: 'B', points: 3, perfectBets: 1, correctBets: 2 },
-                { id: '4', name: 'C', points: 2, perfectBets: 1, correctBets: 2 },
-                { id: '5', name: 'D', points: 1, perfectBets: 1, correctBets: 2 },
-            ],
+            players: [],
         }; // TO DELETE
     },
     components: {
         FontAwesomeIcon,
     },
-    created() {
+    async created() {
         this.faMedal = faMedal;
+        this.players = await getUsers();
     },
     methods: {
         getMedalColor(index) {
