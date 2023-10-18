@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.6.0...v1.6.1) (2023-10-17)
+
+
+### Bug Fixes
+
+* Fix match model and signin/register ([2f5b551](https://github.com/TheoLaperrouse/BetPlatform/commit/2f5b55119a222ad80f40b113fd606fb0048b0071))
+
 # [1.6.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.5.0...v1.6.0) (2023-10-17)
 
 
