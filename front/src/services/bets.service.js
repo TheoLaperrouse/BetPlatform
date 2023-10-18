@@ -6,6 +6,7 @@ export const sendBets = async (betsData) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(betsData),
     });
@@ -21,9 +22,13 @@ export const sendBets = async (betsData) => {
     return bets;
 };
 
-export const getMyBets = async (userId) => {
-    const response = await fetch(`${baseURL}/bets/${userId}`);
-
+export const getMyBets = async () => {
+    const response = await fetch(`${baseURL}/bets`, {
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    });
     if (!response.ok) {
         return Toast.fire({
             icon: 'error',

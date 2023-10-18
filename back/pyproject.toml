@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "my-project"
+name = "betplatform"
 version = "1.0.0"
-description = "A sample project"
+description = "A bet platform"
 authors= ["Théo Laperrouse"]
 
 [tool.poetry.dependencies]

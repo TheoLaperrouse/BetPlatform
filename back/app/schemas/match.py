@@ -2,8 +2,7 @@ from pydantic import BaseModel
 from typing import List
 
 class MatchCreate(BaseModel):
-    team1: str
-    team2: str
+    teams: List[str]
     date: str
     is_home: bool
     score: int

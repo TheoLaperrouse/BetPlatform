@@ -59,6 +59,7 @@
 
 <script>
 import { createUser } from '../services/users.service';
+import { getMe } from '../services/users.service';
 
 export default {
     data() {
@@ -77,13 +78,11 @@ export default {
                 email: this.email,
                 password: this.password,
             });
-            // eslint-disable-next-line no-console
-            console.log(access_token);
             if (access_token) {
-                localStorage.setItem('jwtToken', access_token);
+                sessionStorage.setItem('jwtToken', access_token);
+                sessionStorage.setItem('currentUser', await getMe());
+                this.$router.push('/');
             }
-
-            this.$router.push('/');
         },
     },
 };

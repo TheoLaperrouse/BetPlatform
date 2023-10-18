@@ -12,14 +12,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(player, index) in players" :key="player.id" :class="index % 2 === 0 ? 'bg-gray-100' : ''">
+                <tr v-for="(player, index) in players" :key="player.id" :class="getRowClass(player.id, index)">
                     <td class="table-cell">
                         <span v-if="index < 3" class="pr-2">
                             <font-awesome-icon :icon="faMedal" :class="getMedalColor(index)" />
                         </span>
                         {{ index + 1 }}
                     </td>
-                    <td class="table-cell">{{ `${player.first_name} ${player.last_name}` }}</td>
+                    <td class="table-cell" :class="{ 'font-bold': player.id === currentUser.id }">
+                        {{ `${player.first_name} ${player.last_name}` }}
+                    </td>
                     <td class="table-cell">{{ player?.perfect_bets }}</td>
                     <td class="table-cell">{{ player?.correct_bets }}</td>
                     <td class="table-cell">{{ player?.points }}</td>
@@ -38,7 +40,7 @@ export default {
     data() {
         return {
             players: [],
-        }; // TO DELETE
+        };
     },
     components: {
         FontAwesomeIcon,
@@ -46,6 +48,7 @@ export default {
     async created() {
         this.faMedal = faMedal;
         this.players = await getUsers();
+        this.currentUser = sessionStorage.getItem('currentUser');
     },
     methods: {
         getMedalColor(index) {
@@ -60,6 +63,12 @@ export default {
                     return 'text-black';
             }
         },
+        getRowClass(playerId, index) {
+            return {
+                'bg-highlight': playerId === this.currentUser.id,
+                'bg-gray-100': playerId !== this.currentUser.id && index % 2 === 0,
+            };
+        },
     },
 };
 </script>
@@ -68,5 +77,8 @@ export default {
     padding: 0.75rem;
     border: 1px solid #e5e7eb;
     text-align: center;
+}
+.bg-highlight {
+    background-color: rgba(255, 255, 0, 0.2); /* Jaune avec une opacité de 0.2 (20%) */
 }
 </style>

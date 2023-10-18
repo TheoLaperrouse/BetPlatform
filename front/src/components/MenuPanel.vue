@@ -12,10 +12,10 @@
                 </router-link>
             </li>
             <li class="py-4 ml-6 pt-4">
-                <router-link :to="githubLink" class="flex items-center">
+                <a :href="githubLink" target="_blank" class="flex items-center">
                     <font-awesome-icon :icon="faGithub" class="mr-2" />
                     <span> Repo Github </span>
-                </router-link>
+                </a>
             </li>
         </ul>
         <div class="fixed bottom-4 left-4">
@@ -47,6 +47,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { useUserStore } from '@/store/users.store';
 
 export default {
     components: {
@@ -72,7 +73,8 @@ export default {
     },
     methods: {
         logout() {
-            localStorage.removeItem('jwtToken');
+            sessionStorage.removeItem('jwtToken');
+            useUserStore().clearUser();
             this.$router.push('/signin');
         },
         toggleMenu() {

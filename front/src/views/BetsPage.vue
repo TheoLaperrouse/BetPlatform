@@ -37,7 +37,7 @@ export default {
                     { teams: ['Thorigné', 'Rennes CPB'], teamDivision: 'Régionale 2' },
                     { teams: ['Thorigné', 'Cesson'], teamDivision: 'Départementale 1' },
                 ],
-            ], // TO DELETE
+            ],
         },
     },
     data() {

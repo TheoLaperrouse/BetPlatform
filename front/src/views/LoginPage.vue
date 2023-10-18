@@ -41,7 +41,8 @@
 </template>
 
 <script>
-import { login } from '@/services/users.service';
+import { login, getMe } from '@/services/users.service';
+
 export default {
     data() {
         return {
@@ -51,11 +52,12 @@ export default {
     },
     methods: {
         async connect() {
-            const { access_token } = await login({ email, password });
+            const { access_token } = await login({ email: this.email, password: this.password });
             if (access_token) {
-                localStorage.setItem('jwtToken', access_token);
+                sessionStorage.setItem('jwtToken', access_token);
+                sessionStorage.setItem('currentUser', await getMe());
+                this.$router.push('/');
             }
-            this.$router.push('/');
         },
     },
 };

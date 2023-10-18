@@ -23,7 +23,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const publicPages = ['/signin', '/register'];
     const authRequired = !publicPages.includes(to.path);
-    const loggedIn = localStorage.getItem('jwtToken');
+    const loggedIn = sessionStorage.getItem('jwtToken');
     if (authRequired && !loggedIn) {
         next('/signin');
     } else {
