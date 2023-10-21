@@ -41,7 +41,7 @@
             <button
                 type="submit"
                 class="w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
-                @click="updateUser()"
+                @click="onUpdateUser(currentUser.id, user)"
             >
                 Enregistrer
             </button>
@@ -50,7 +50,8 @@
 </template>
 
 <script>
-import { updateUser } from '@/services/users.service';
+import { updateUser, getMe } from '@/services/users.service';
+
 export default {
     data() {
         return {
@@ -62,9 +63,16 @@ export default {
             },
         };
     },
+    created() {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.user = { ...this.currentUser, password: '' };
+    },
     methods: {
-        updateUser() {
-            return updateUser(this.user, '');
+        async onUpdateUser(userId, userData) {
+            const user = { ...userData };
+            delete user.id;
+            const { access_token } = await updateUser(userId, user);
+            await setAccessToken(access_token);
         },
     },
 };

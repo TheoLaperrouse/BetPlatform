@@ -79,8 +79,7 @@ export default {
                 password: this.password,
             });
             if (access_token) {
-                sessionStorage.setItem('jwtToken', access_token);
-                sessionStorage.setItem('currentUser', await getMe());
+                await setAccessToken(access_token);
                 this.$router.push('/');
             }
         },
