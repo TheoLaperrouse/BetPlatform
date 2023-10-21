@@ -1,3 +1,17 @@
+# [1.7.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.6.1...v1.7.0) (2023-10-21)
+
+
+### Bug Fixes
+
+* FIx the /PUT users ([10ae796](https://github.com/TheoLaperrouse/BetPlatform/commit/10ae796104c3ec231e13a8e3cba3559bf83961d1))
+* Some fixes on back: Match model / router ([ef4500f](https://github.com/TheoLaperrouse/BetPlatform/commit/ef4500f593683bab3a7d2848d79312be3d444760))
+
+
+### Features
+
+* Add a job every 8 hours to retrieve matchs ([1f61091](https://github.com/TheoLaperrouse/BetPlatform/commit/1f61091be6f943ca18a36b806a12f5768c0a2d4d))
+* Display Bet according to match in BetsPage ([10e0359](https://github.com/TheoLaperrouse/BetPlatform/commit/10e03595975a8c4629d3183590452225049045f4))
+
 ## [1.6.1](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.6.0...v1.6.1) (2023-10-17)
 
 
