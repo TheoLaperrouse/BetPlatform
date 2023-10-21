@@ -18,19 +18,19 @@
                 </a>
             </li>
         </ul>
-        <div class="fixed bottom-4 left-4">
+        <div class="fixed bottom-0 left-4">
             <button
                 @click="logout"
                 class="absolute bottom-4 w-10 h-10 text-white bg-red-500 rounded-full hover:bg-red-600 focus:outline-none"
             >
                 <font-awesome-icon :icon="faSignOutAlt" />
             </button>
-            <button
+            <!-- <button
                 @click="toggleMenu"
                 class="absolute bottom-4 left-42 w-10 h-10 text-white bg-gray-600 rounded-full hover:bg-gray-700 focus:outline-none"
             >
                 <font-awesome-icon :icon="menuClosed ? faArrowRight : faArrowLeft" />
-            </button>
+            </button> -->
         </div>
     </div>
 </template>
@@ -47,7 +47,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { useUserStore } from '@/store/users.store';
 
 export default {
     components: {
@@ -73,8 +72,7 @@ export default {
     },
     methods: {
         logout() {
-            sessionStorage.removeItem('jwtToken');
-            useUserStore().clearUser();
+            localStorage.removeItem('jwtToken');
             this.$router.push('/signin');
         },
         toggleMenu() {

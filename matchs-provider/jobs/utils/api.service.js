@@ -18,7 +18,13 @@ function formatMatches(matches) {
         .filter(({ equa, equb }) => isTFTTRegex.test(equa) || isTFTTRegex.test(equb))
         .map(({ equa, equb, scorea, scoreb, datereelle, lien, libelle }) => {
             const teams = [equa, equb];
-            const score = [scorea, scoreb];
+            let score = [scorea, scoreb];
+            if (equa === null) {
+                score = [0, 14];
+            } else if (equb === null) {
+                score = [14, 0];
+            }
+
             const dayMatch = libelle.match(matchDayRegex);
             return {
                 teams: filterNullValues(teams),
@@ -41,6 +47,5 @@ export async function getMatches() {
     const matches = await response.json();
 
     console.log("Matchs bien récupérés depuis l'api");
-    console.log(formatMatches(matches));
     return formatMatches(matches);
 }

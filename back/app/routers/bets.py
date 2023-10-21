@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException
-from sqlalchemy.orm import Session
 from app.models.bet import Bet
 from app.schemas.bet import BetCreate, BetUpdate
 from app.database import SessionLocal

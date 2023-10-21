@@ -2,6 +2,7 @@ import { Toast } from '@/components/toast.ts';
 import { baseURL } from './api.config';
 
 export const sendBets = async (betsData) => {
+    const token = localStorage.getItem('jwtToken');
     const response = await fetch(`${baseURL}/bets`, {
         method: 'POST',
         headers: {
@@ -23,6 +24,7 @@ export const sendBets = async (betsData) => {
 };
 
 export const getMyBets = async () => {
+    const token = localStorage.getItem('jwtToken');
     const response = await fetch(`${baseURL}/bets`, {
         headers: {
             'Content-Type': 'application/json',

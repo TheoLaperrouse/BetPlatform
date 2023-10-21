@@ -1,7 +1,7 @@
 <template>
     <div id="app" class="flex">
         <template v-if="isAppRoute">
-            <MenuPanel />
+            <MenuPanel class="min-w-[250px]" />
         </template>
         <router-view class="flex-auto" />
     </div>

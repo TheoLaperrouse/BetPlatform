@@ -48,7 +48,7 @@ export default {
     async created() {
         this.faMedal = faMedal;
         this.players = await getUsers();
-        this.currentUser = sessionStorage.getItem('currentUser');
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     },
     methods: {
         getMedalColor(index) {

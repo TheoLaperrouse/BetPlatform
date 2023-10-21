@@ -2,4 +2,4 @@
 /postgres_data
 /pgadmin_data
 /db-init-scripts
-/node_modules
+**/node_modules
