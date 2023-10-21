@@ -8,9 +8,10 @@ class Match(Base):
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
     teams = Column(ARRAY(String), nullable=False)
-    score = Column(ARRAY(Integer))  # Utilisez un tableau d'entiers pour le score
+    score = Column(ARRAY(Integer)) 
     match_date = Column(DateTime(timezone=True))
+    match_day = Column(Integer) 
     is_home = Column(Boolean)
-    link = Column(String)
+    link = Column(String, unique=True)
     bets = relationship('Bet', back_populates='match')
     

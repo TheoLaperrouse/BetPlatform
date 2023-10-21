@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import bets, users
+from app.routers import bets, users, matches
 from app.database import engine
 from app.models.user import User
 from app.models.bet import Bet
@@ -10,7 +10,7 @@ from app.models.match import Match
 
 def init_routers(_app):
     '''Initialize routers'''
-    routers = [bets, users]
+    routers = [bets, users, matches]
     for router in routers:
         _app.include_router(router.router)
 
