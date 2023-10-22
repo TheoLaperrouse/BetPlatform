@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { updateUser, getMe } from '@/services/users.service';
+import { updateUser, setAccessToken } from '@/services/users.service';
 
 export default {
     data() {

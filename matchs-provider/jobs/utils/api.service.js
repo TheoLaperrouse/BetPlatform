@@ -2,6 +2,7 @@ export const BASE_API_URL = 'http://fastapifftt.thorigne-tt.net';
 
 const isTFTTRegex = /THORIGNE/i;
 const matchDayRegex = /tour n°(\d+)/;
+const rencIdMatch = /renc_id=([^&]*)/;
 
 function filterNullValues(arr) {
     return arr.filter((element) => element !== null);
@@ -33,6 +34,7 @@ function formatMatches(matches) {
                 matchDate: convertDateToISO(datereelle),
                 matchDay: dayMatch.length > 1 ? dayMatch[1] : 0,
                 link: lien,
+                matchId: lien.match(rencIdMatch)[1],
             };
         });
 }
@@ -45,7 +47,7 @@ export async function getMatches() {
         },
     });
     const matches = await response.json();
-
+    console.log(formatMatches(matches));
     console.log("Matchs bien récupérés depuis l'api");
     return formatMatches(matches);
 }

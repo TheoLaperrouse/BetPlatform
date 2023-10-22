@@ -58,8 +58,7 @@
 </template>
 
 <script>
-import { createUser } from '../services/users.service';
-import { getMe } from '../services/users.service';
+import { setAccessToken, createUser } from '../services/users.service';
 
 export default {
     data() {

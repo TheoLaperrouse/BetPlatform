@@ -6,12 +6,12 @@ from sqlalchemy.dialects.postgresql import UUID
 class Match(Base):
     __tablename__ = 'matches'
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
+    id = Column(String, primary_key=True, unique=True, nullable=False)
     teams = Column(ARRAY(String), nullable=False)
     score = Column(ARRAY(Integer)) 
     match_date = Column(DateTime(timezone=True))
     match_day = Column(Integer) 
     is_home = Column(Boolean)
-    link = Column(String, unique=True)
+    link = Column(String)
     bets = relationship('Bet', back_populates='match')
     

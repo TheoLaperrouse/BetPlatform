@@ -41,8 +41,7 @@
 </template>
 
 <script>
-import { login, getMe } from '@/services/users.service';
-import { setAccessToken } from '../services/api.config';
+import { setAccessToken, login } from '@/services/users.service';
 
 export default {
     data() {
