@@ -1,7 +1,8 @@
-from fastapi import APIRouter
-from app.schemas.match import MatchCreate
-from app.models.match import Match
+from fastapi import APIRouter, Depends
+
+from app.auth import JWTBearer
 from app.database import SessionLocal
+from app.models.match import Match
 
 db = SessionLocal()
 
@@ -10,7 +11,7 @@ router = APIRouter(
     tags=["matches"]
 )
 
-@router.get("/")
+@router.get("/", dependencies=[Depends(JWTBearer())])
 def get_matches():
     '''Get all matches'''
     matches = db.query(Match).all()

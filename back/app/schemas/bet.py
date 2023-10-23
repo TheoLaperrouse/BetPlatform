@@ -1,19 +1,13 @@
+from typing import List
+
 from pydantic import BaseModel
 
+
 class BetBase(BaseModel):
-    match_day: int
-    teams: str
+    bet_score: int
+    match_id: str
     user_id: int
 
-class BetCreate(BetBase):
-    pass
-
-class BetUpdate(BetBase):
-    pass
-
-class Bet(BetBase):
-    id: int
-    created_at: str
-
-    class Config:
-        from_attributes = True
+class BetCreate(BaseModel):
+    bet_score: List[int]
+    match_id: str

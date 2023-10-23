@@ -1,7 +1,9 @@
-from fastapi import APIRouter, HTTPException
-from app.models.bet import Bet
-from app.schemas.bet import BetCreate, BetUpdate
+from fastapi import APIRouter, Depends, Header, HTTPException
+
+from app.auth import JWTBearer, decodeJWT
 from app.database import SessionLocal
+from app.models.bet import Bet
+from app.schemas.bet import BetCreate
 
 db = SessionLocal()
 
@@ -10,31 +12,27 @@ router = APIRouter(
     tags=["bets"]
 )
 
-@router.get("/")
+@router.get("/",dependencies=[Depends(JWTBearer())])
 def get_bets():
     '''Get all the bets'''
     bets = db.query(Bet).all()
     return bets
 
-@router.get("/{bet_id}")
-def get_bet(bet_id: int):
-    '''Get a bet'''
-    bet = db.query(Bet).filter(Bet.id == bet_id).first()
-    if not bet:
-        raise HTTPException(status_code=404, detail="Pari non trouvé")
-    return bet
-
-@router.post("/")
-def create_bet(bet: BetCreate):
+@router.post("/", dependencies=[Depends(JWTBearer())])
+def create_bet(bet_data: BetCreate, authorization: str = Header(None)):
     '''Create a bet'''
-    db_bet = Bet(**bet.model_dump())
+    token = authorization.split("Bearer ")[1]
+    user = decodeJWT(token)
+    print(user)
+    bet = {"match_id":bet_data.match_id, "bet_score":bet_data.bet_score, "user_id": user['id']}
+    db_bet = Bet(**bet)
     db.add(db_bet)
     db.commit()
     db.refresh(db_bet)
     return db_bet
 
-@router.put("/{bet_id}")
-def update_bet(bet_id: int, bet_data: BetUpdate):
+@router.put("/{bet_id}",  dependencies=[Depends(JWTBearer())])
+def update_bet(bet_id: int, bet_data: BetCreate):
     '''Update a bet'''
     db_bet = db.query(Bet).filter(Bet.id == bet_id).first()
     if not db_bet:

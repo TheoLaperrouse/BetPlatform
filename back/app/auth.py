@@ -1,7 +1,11 @@
 from datetime import datetime, timedelta
+
 import jwt
-from app.config import JWT_SECRET_KEY, JWT_EXPIRATION_TIME
-from fastapi import HTTPException
+from fastapi import HTTPException, Request
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+
+from app.config import JWT_EXPIRATION_TIME, JWT_SECRET_KEY
+
 
 def create_access_token(data: dict, expires_delta: timedelta = None):
     to_encode = data.copy()
@@ -15,7 +19,7 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
     
     return encoded_jwt
 
-def verify_token(token: str):
+def decodeJWT(token: str):
     try:
         payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=["HS256"])
         return payload
@@ -25,3 +29,28 @@ def verify_token(token: str):
         raise HTTPException(status_code=401, detail="Erreur de décodage du jeton")
     except jwt.InvalidTokenError:
         raise HTTPException(status_code=401, detail="Jeton invalide")
+
+class JWTBearer(HTTPBearer):
+    def __init__(self, auto_error: bool = True):
+        super(JWTBearer, self).__init__(auto_error=auto_error)
+
+    async def __call__(self, request: Request):
+        credentials: HTTPAuthorizationCredentials = await super(JWTBearer, self).__call__(request)
+        if credentials:
+            if not credentials.scheme == "Bearer":
+                raise HTTPException(status_code=403, detail="Invalid authentication scheme.")
+            if not self.verify_jwt(credentials.credentials):
+                raise HTTPException(status_code=403, detail="Invalid token or expired token.")
+            return credentials.credentials
+        else:
+            raise HTTPException(status_code=403, detail="Invalid authorization code.")
+
+    def verify_jwt(self, jwttoken: str) -> bool:
+        isTokenValid: bool = False
+        try:
+            payload = decodeJWT(jwttoken)
+        except:
+            payload = None
+        if payload:
+            isTokenValid = True
+        return isTokenValid

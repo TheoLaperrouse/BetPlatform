@@ -1,10 +1,11 @@
-from fastapi import APIRouter, HTTPException, Header
-from app.schemas.user import UserCreate, UserCredentials, UserUpdate
-from app.models.user import User
+from fastapi import APIRouter, Depends, Header, HTTPException
 from passlib.context import CryptContext
 from sqlalchemy import text
-from app.auth import create_access_token, verify_token
+
+from app.auth import JWTBearer, create_access_token, decodeJWT
 from app.database import SessionLocal
+from app.models.user import User
+from app.schemas.user import UserCreate, UserCredentials, UserUpdate
 
 db = SessionLocal()
     
@@ -16,7 +17,7 @@ router = APIRouter(
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-@router.get("/")
+@router.get("/",dependencies=[Depends(JWTBearer())])
 def get_users():
     '''Get all users'''
     query = text("SELECT id, first_name, last_name FROM users")
@@ -34,15 +35,10 @@ def get_users():
         })
     return users
 
-@router.get("/me")
+@router.get("/me",dependencies=[Depends(JWTBearer())])
 async def get_me(authorization: str = Header(None)):
-    if authorization:
-        token = authorization.split("Bearer ")[1]
-        user = verify_token(token)
-    else:
-        raise HTTPException(status_code=401, detail="Pas de headers Authorization envoyé")
-    if user is None:
-        raise HTTPException(status_code=401, detail="Invalide ou expiré token")
+    token = authorization.split("Bearer ")[1]
+    user = decodeJWT(token)
     return user
 
 @router.post("/")
@@ -59,7 +55,7 @@ async def create_user(user: UserCreate):
     access_token = create_access_token(data={"email": db_user.email,"id": str(db_user.id), "first_name": db_user.first_name, "last_name": db_user.last_name})
     return {"access_token": access_token, "token_type": "bearer"}
 
-@router.put("/{user_id}")
+@router.put("/{user_id}", dependencies=[Depends(JWTBearer())])
 async def update_user(user_id: str, user_data: UserUpdate):
     db_user = db.query(User).filter(User.id == user_id).first()
     existing_user = User.get_by_email(db, user_data.email)
@@ -77,7 +73,6 @@ async def update_user(user_id: str, user_data: UserUpdate):
     db.commit()
 
     access_token = create_access_token(data={"email": db_user.email, "id": str(db_user.id), "first_name": db_user.first_name, "last_name": db_user.last_name})
-    
     return {"access_token": access_token, "token_type": "bearer"}
 
 @router.post("/login")
@@ -85,7 +80,6 @@ async def login(user: UserCredentials):
     db_user = User.get_by_email(db, user.email)
     if db_user is None:
         raise HTTPException(status_code=400, detail="L'email ne correspond à aucun utilisateur")
-    
     if not pwd_context.verify(user.password, db_user.password):
         raise HTTPException(status_code=400, detail="Mot de passe incorrect")
     

@@ -1,8 +1,10 @@
-import uuid
-from sqlalchemy import Column, Integer, String, ARRAY, DateTime, Boolean
+
+from sqlalchemy import ARRAY, Boolean, Column, DateTime, Integer, String
 from sqlalchemy.orm import relationship
+
 from app.database import Base
-from sqlalchemy.dialects.postgresql import UUID 
+
+
 class Match(Base):
     __tablename__ = 'matches'
 
