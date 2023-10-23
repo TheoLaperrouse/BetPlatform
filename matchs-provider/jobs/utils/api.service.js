@@ -1,4 +1,4 @@
-export const BASE_API_URL = 'http://fastapifftt.thorigne-tt.net';
+const BASE_API_URL = 'http://fastapifftt.thorigne-tt.net';
 
 const isTFTTRegex = /THORIGNE/i;
 const matchDayRegex = /tour n°(\d+)/;
@@ -20,13 +20,14 @@ function formatMatches(matches) {
         .map(({ equa, equb, scorea, scoreb, datereelle, lien, libelle }) => {
             const teams = [equa, equb];
             let score = [scorea, scoreb];
+            const dayMatch = libelle.match(matchDayRegex);
+
             if (equa === null) {
                 score = [0, 14];
             } else if (equb === null) {
                 score = [14, 0];
             }
 
-            const dayMatch = libelle.match(matchDayRegex);
             return {
                 teams: filterNullValues(teams),
                 score: filterNullValues(score),
@@ -47,7 +48,6 @@ export async function getMatches() {
         },
     });
     const matches = await response.json();
-    console.log(formatMatches(matches));
-    console.log("Matchs bien récupérés depuis l'api");
+    console.log("Matchs bien récupérés depuis l'API");
     return formatMatches(matches);
 }
