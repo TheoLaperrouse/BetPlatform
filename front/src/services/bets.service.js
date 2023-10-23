@@ -23,6 +23,28 @@ export const sendBets = async (betsData) => {
     return bets;
 };
 
+export const sendBet = async (betsData) => {
+    const token = localStorage.getItem('jwtToken');
+    const response = await fetch(`${baseURL}/bets`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(betsData),
+    });
+
+    if (!response.ok) {
+        return Toast.fire({
+            icon: 'error',
+            title: "Erreur lors de l'envoi du pari",
+        });
+    }
+
+    const bets = await response.json();
+    return bets;
+};
+
 export const getMyBets = async () => {
     const token = localStorage.getItem('jwtToken');
     const response = await fetch(`${baseURL}/bets`, {

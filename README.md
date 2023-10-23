@@ -50,6 +50,19 @@ JWT_EXPIRATION_TIME=720
 docker-compose up
 ```
 
+### Lancement back et front :
+
+Lancement back en local
+```sh
+poetry install
+poetry run uvicorn app.main:app --host 0.0.0.0 --port 5000 --reload
+```
+
+Lancement front en local
+```sh
+yarn
+yarn start 
+```
 
 ### Licence
 Ce projet est sous licence MIT. Veuillez consulter le fichier LICENSE pour plus d'informations.

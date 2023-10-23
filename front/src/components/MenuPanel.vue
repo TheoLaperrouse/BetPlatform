@@ -57,7 +57,7 @@ export default {
             menuClosed: localStorage.getItem('menuClosed') === 'true' || false,
             menuLinks: [
                 { to: '/', text: 'Accueil', icon: faHome },
-                { to: '/bets', text: 'Paris', icon: faFlag },
+                { to: '/matchs', text: 'Matchs', icon: faFlag },
                 { to: '/ranking', text: 'Classement', icon: faTrophy },
                 { to: '/settings', text: 'Paramètres', icon: faGear },
             ],
