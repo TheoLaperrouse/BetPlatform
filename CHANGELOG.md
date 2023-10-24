@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.8.0...v1.9.0) (2023-10-24)
+
+
+### Features
+
+* Add a page BetsPage ([a432460](https://github.com/TheoLaperrouse/BetPlatform/commit/a432460585511adcbe269a87aeb69e19aee9e899))
+
 # [1.8.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.7.0...v1.8.0) (2023-10-23)
 
 
