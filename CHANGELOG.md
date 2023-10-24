@@ -1,3 +1,17 @@
+# [1.8.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.7.0...v1.8.0) (2023-10-23)
+
+
+### Bug Fixes
+
+* Change BetsPage/BetComponent to MatchsPage/MatchComponent ([2cc37c2](https://github.com/TheoLaperrouse/BetPlatform/commit/2cc37c2f4d1a30a507138ac0870056037114f5de))
+* Fix bree job ([6d4d72e](https://github.com/TheoLaperrouse/BetPlatform/commit/6d4d72e758be3d3d69b778fab8b848367e592dff))
+* Refacto match id to string / Handle of localStorage ([2b043d1](https://github.com/TheoLaperrouse/BetPlatform/commit/2b043d1ce4d788783fd996a0d1aaefd88a3f968b))
+
+
+### Features
+
+* Add JWT Security handle on routes / Lint files / Add a correct schema for Bets ([e6d9e38](https://github.com/TheoLaperrouse/BetPlatform/commit/e6d9e38de0910d477c12581beec61f6c8b94bc5c))
+
 # [1.7.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.6.1...v1.7.0) (2023-10-21)
 
 
