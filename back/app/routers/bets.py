@@ -18,12 +18,19 @@ def get_bets():
     bets = db.query(Bet).all()
     return bets
 
+@router.get("/my_bets",dependencies=[Depends(JWTBearer())])
+def get_my_bets(authorization: str = Header(None)):
+    '''Get my bets'''
+    token = authorization.split("Bearer ")[1]
+    user = decodeJWT(token)
+    bets = db.query(Bet).filter(Bet.user_id == user['id'])
+    return bets
+
 @router.post("/", dependencies=[Depends(JWTBearer())])
 def create_bet(bet_data: BetCreate, authorization: str = Header(None)):
     '''Create a bet'''
     token = authorization.split("Bearer ")[1]
     user = decodeJWT(token)
-    print(user)
     bet = {"match_id":bet_data.match_id, "bet_score":bet_data.bet_score, "user_id": user['id']}
     db_bet = Bet(**bet)
     db.add(db_bet)

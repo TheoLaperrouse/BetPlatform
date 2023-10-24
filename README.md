@@ -1,4 +1,4 @@
-# BetPlatform - Guide de Démarrage Rapide
+# BetPlatform
 
 ## Table des Matières
 - [Aperçu](#aperçu)
@@ -6,9 +6,7 @@
 - [Mise en Place](#mise-en-place)
   - [Prérequis](#prérequis)
   - [Installation](#installation)
-  - [Configuration](#configuration)
-- [Utilisation](#utilisation)
-- [Contribuer](#contribuer)
+  - [Lancement pour dev](#lancement-pour-dev)
 - [Licence](#licence)
 
 ## Aperçu
@@ -39,10 +37,10 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 ```bash
 git clone https://github.com/TheoLaperrouse/BetPlatform
 ```
-2. Configurer les variables d'environnements
+2. Configurer les variables d'environnement:
 ```
-DATABASE_URL=postgresql://utilisateur:motdepasse@localhost:5432/betplatform
-JWT_SECRET_KEY=clé_secrète_super_sûre
+DATABASE_URL=postgresql://user:password@localhost:5432/betplatform
+JWT_SECRET_KEY=SECRET_KET
 JWT_EXPIRATION_TIME=720
 ```
 3. Lancer le docker-compose:
@@ -50,7 +48,7 @@ JWT_EXPIRATION_TIME=720
 docker-compose up
 ```
 
-### Lancement back et front :
+### Lancement pour dev:
 
 Lancement back en local
 ```sh

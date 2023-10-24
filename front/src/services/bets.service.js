@@ -47,7 +47,7 @@ export const sendBet = async (betsData) => {
 
 export const getMyBets = async () => {
     const token = localStorage.getItem('jwtToken');
-    const response = await fetch(`${baseURL}/bets`, {
+    const response = await fetch(`${baseURL}/bets/my_bets`, {
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,

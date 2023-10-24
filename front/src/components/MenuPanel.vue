@@ -44,6 +44,7 @@ import {
     faSignOutAlt,
     faArrowLeft,
     faArrowRight,
+    faTableTennisPaddleBall,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -57,7 +58,8 @@ export default {
             menuClosed: localStorage.getItem('menuClosed') === 'true' || false,
             menuLinks: [
                 { to: '/', text: 'Accueil', icon: faHome },
-                { to: '/matchs', text: 'Matchs', icon: faFlag },
+                { to: '/matchs', text: 'Matchs', icon: faTableTennisPaddleBall },
+                { to: '/bets', text: 'Mes Paris', icon: faFlag },
                 { to: '/ranking', text: 'Classement', icon: faTrophy },
                 { to: '/settings', text: 'Paramètres', icon: faGear },
             ],
