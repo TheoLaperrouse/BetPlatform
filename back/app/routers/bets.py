@@ -12,7 +12,7 @@ router = APIRouter(
     tags=["bets"]
 )
 
-@router.get("/",dependencies=[Depends(JWTBearer())])
+@router.get("",dependencies=[Depends(JWTBearer())])
 def get_bets():
     '''Get all the bets'''
     bets = db.query(Bet).all()
@@ -26,7 +26,7 @@ def get_my_bets(authorization: str = Header(None)):
     bets = db.query(Bet).filter(Bet.user_id == user['id'])
     return bets
 
-@router.post("/", dependencies=[Depends(JWTBearer())])
+@router.post("", dependencies=[Depends(JWTBearer())])
 def create_bet(bet_data: BetCreate, authorization: str = Header(None)):
     '''Create a bet'''
     token = authorization.split("Bearer ")[1]

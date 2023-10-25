@@ -17,7 +17,7 @@ router = APIRouter(
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-@router.get("/",dependencies=[Depends(JWTBearer())])
+@router.get("",dependencies=[Depends(JWTBearer())])
 def get_users():
     '''Get all users'''
     query = text("SELECT id, first_name, last_name FROM users")
@@ -41,7 +41,7 @@ async def get_me(authorization: str = Header(None)):
     user = decodeJWT(token)
     return user
 
-@router.post("/")
+@router.post("")
 async def create_user(user: UserCreate):
     existing_user = User.get_by_email(db, user.email)
     if existing_user:

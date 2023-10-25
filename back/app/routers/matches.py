@@ -11,7 +11,7 @@ router = APIRouter(
     tags=["matches"]
 )
 
-@router.get("/", dependencies=[Depends(JWTBearer())])
+@router.get("", dependencies=[Depends(JWTBearer())])
 def get_matches():
     '''Get all matches'''
     matches = db.query(Match).all()
