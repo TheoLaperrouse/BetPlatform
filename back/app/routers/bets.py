@@ -12,7 +12,7 @@ router = APIRouter(
     tags=["bets"]
 )
 
-@router.get("/",dependencies=[Depends(JWTBearer())])
+@router.get("",dependencies=[Depends(JWTBearer())])
 def get_bets():
     '''Get all the bets'''
     bets = db.query(Bet).all()
