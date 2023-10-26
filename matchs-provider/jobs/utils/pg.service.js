@@ -4,7 +4,7 @@ export const pool = new pg.Pool({
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
-    host: 'db',
+    host: 'localhost',
     port: 5432,
 });
 
@@ -24,6 +24,52 @@ export async function insertMatches(matches) {
         }
         console.log('Matchs bien insérés en base');
     } catch (err) {
-        console.error('Error inserting matches', err);
+        console.error('Erreur sur insertion match', err);
+    }
+}
+
+export async function getBets() {
+    try {
+        const query = { text: 'SELECT * FROM bets' };
+
+        const bets = await pool.query(query);
+        console.log('Paris bien récupérés en base');
+        return bets.rows;
+    } catch (err) {
+        console.error('Erreur sur récupération des paris', err);
+    }
+}
+
+export async function updateStatus(matches) {
+    try {
+        const bets = await getBets();
+        for (const match of matches) {
+            const filteredBets = bets.filter((bet) => bet.match_id === match.matchId);
+            let score = match?.score;
+            const scoreNull = score[0] === null && score[1] === null;
+
+            for (let bet of filteredBets) {
+                let status = 0;
+                const { id, bet_score } = bet;
+                if (!scoreNull) {
+                    const matchVicIndex = score[0] > score[1] ? 0 : 1;
+                    const betVicIndex = bet_score[0] > bet_score[1] ? 0 : 1;
+                    if (bet.bet_score === match.score) {
+                        status = 3;
+                    } else if (matchVicIndex === betVicIndex) {
+                        status = 2;
+                    } else {
+                        status = 1;
+                    }
+                    await pool.query({
+                        text: 'UPDATE public.bets SET status=$1 WHERE id=$2',
+                        values: [status, id],
+                    });
+                }
+            }
+        }
+        console.log('Statuts bien mis à jour');
+    } catch (err) {
+        console.error('Erreur sur la mise à jour des status', err);
     }
 }

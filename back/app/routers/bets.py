@@ -23,7 +23,7 @@ def get_my_bets(authorization: str = Header(None)):
     '''Get my bets'''
     token = authorization.split("Bearer ")[1]
     user = decodeJWT(token)
-    bets = db.query(Bet).filter(Bet.user_id == user['id'])
+    bets = db.query(Bet).filter(Bet.user_id == user['id']).all()
     return bets
 
 @router.post("", dependencies=[Depends(JWTBearer())])

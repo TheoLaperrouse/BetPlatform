@@ -5,7 +5,7 @@
             <label for="matchDay">
                 <h3 class="">Journée {{ selectedMatchDay }}</h3>
             </label>
-            <input type="range" id="matchDay" v-model="selectedMatchDay" min="1" max="7" class="w-[300px] mt-1" />
+            <input type="range" id="matchDay" v-model="selectedMatchDay" min="1" max="18" class="w-[300px] mt-1" />
         </div>
         <div v-if="selectedMatchDay">
             <ul class="grid grid-cols-3 gap-4">
