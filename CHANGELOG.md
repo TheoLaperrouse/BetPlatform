@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.9.0...v1.9.1) (2023-10-25)
+
+
+### Bug Fixes
+
+* Fix the deployment / nginx conf ([9771bf9](https://github.com/TheoLaperrouse/BetPlatform/commit/9771bf90200c38749cca9f16875c19dae2771987))
+
 # [1.9.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.8.0...v1.9.0) (2023-10-24)
 
 
