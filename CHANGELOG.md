@@ -1,3 +1,15 @@
+# [1.10.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.9.0...v1.10.0) (2023-10-26)
+
+
+### Bug Fixes
+
+* Fix the deployment / nginx conf ([9771bf9](https://github.com/TheoLaperrouse/BetPlatform/commit/9771bf90200c38749cca9f16875c19dae2771987))
+
+
+### Features
+
+* Change to ProA matches and add a updateStatus job ([0b93fdc](https://github.com/TheoLaperrouse/BetPlatform/commit/0b93fdcc8e23440aaf0cb1773b0953c67851fad2))
+
 ## [1.9.1](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.9.0...v1.9.1) (2023-10-25)
 
 
