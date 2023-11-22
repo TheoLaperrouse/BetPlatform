@@ -13,6 +13,9 @@
 
 BetPlatform est une application de paris sportifs construite avec [FastAPI](https://fastapi.tiangolo.com/) côté serveur et [Vue.js](https://vuejs.org/) côté client. L'objectif de ce projet est de fournir un guide rapide pour démarrer et d'expliquer les aspects clés de l'application.
 
+![image](https://github.com/TheoLaperrouse/BetPlatform/assets/31164468/42c183d0-6489-41c0-8403-e89b6c78b791)
+
+
 ## Architecture
 
 L'architecture du projet est divisée en deux parties principales :
