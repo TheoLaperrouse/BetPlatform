@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.10.0...v1.11.0) (2023-11-23)
+
+
+### Features
+
+* Re-render match card when selectedDay change / Working bets ([56e600f](https://github.com/TheoLaperrouse/BetPlatform/commit/56e600fa5da8d3139c2bc529267d4e937e2f24c5))
+
 # [1.10.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.9.0...v1.10.0) (2023-10-26)
 
 
