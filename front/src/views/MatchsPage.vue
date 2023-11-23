@@ -10,22 +10,18 @@
         <div v-if="selectedMatchDay">
             <ul class="grid grid-cols-3 gap-4">
                 <li v-for="(match, index) in matchesByDay[selectedMatchDay]" :key="index">
-                    <MatchComponent :match="match" />
+                    <MatchComponent :match="match" :bet="betByMatchId[match.id]" :key="selectedMatchDay" />
                 </li>
             </ul>
         </div>
-        <!-- <div class="mt-4 flex justify-center">
-            <button class="bg-blue-500 hover-bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-                Mettre à jour mes paris
-            </button>
-        </div> -->
     </div>
 </template>
 
 <script>
 import MatchComponent from '@/components/MatchComponent.vue';
 import { getMatches } from '@/services/matchs.service.js';
-import { groupBy } from 'lodash';
+import { getMyBets } from '@/services/bets.service.js';
+import { groupBy, keyBy } from 'lodash';
 
 export default {
     components: {
@@ -35,14 +31,19 @@ export default {
         return {
             selectedMatchDay: 1,
             matches: {},
+            bets: [],
         };
     },
     async created() {
         this.matches = await getMatches();
+        this.bets = await getMyBets();
     },
     computed: {
         matchesByDay() {
             return groupBy(this.matches, 'match_day');
+        },
+        betByMatchId() {
+            return keyBy(this.bets, 'match_id');
         },
     },
 };

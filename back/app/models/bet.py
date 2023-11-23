@@ -1,6 +1,6 @@
 import uuid
 
-from sqlalchemy import ARRAY, Column, DateTime, ForeignKey, Integer, String
+from sqlalchemy import ARRAY, Column, DateTime, ForeignKey, Integer, String, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
@@ -19,3 +19,6 @@ class Bet(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     match = relationship("Match", back_populates="bets")
     user = relationship('User', back_populates='bets')
+    __table_args__ = (
+        UniqueConstraint('match_id', 'user_id', name='unique_match_user'),
+    )

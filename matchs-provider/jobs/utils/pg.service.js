@@ -1,10 +1,11 @@
 import pg from 'pg';
+import _ from 'lodash';
 
 export const pool = new pg.Pool({
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
-    host: 'localhost',
+    host: 'db',
     port: 5432,
 });
 
@@ -54,7 +55,8 @@ export async function updateStatus(matches) {
                 if (!scoreNull) {
                     const matchVicIndex = score[0] > score[1] ? 0 : 1;
                     const betVicIndex = bet_score[0] > bet_score[1] ? 0 : 1;
-                    if (bet.bet_score === match.score) {
+
+                    if (_.isEqual(bet_score, match.score)) {
                         status = 3;
                     } else if (matchVicIndex === betVicIndex) {
                         status = 2;

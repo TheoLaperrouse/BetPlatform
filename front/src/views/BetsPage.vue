@@ -1,7 +1,7 @@
 <template>
     <div class="p-4">
         <h2 class="text-2xl font-semibold text-center p-4">Mes paris</h2>
-        <ul>
+        <ul class="grid grid-cols-3 gap-4">
             <li
                 v-for="bet in bets"
                 :key="bet.id"
@@ -32,8 +32,8 @@ export default {
     },
     async created() {
         this.statusText = ['Pas joué', 'Faux', 'Correct', 'Parfait'];
-        this.statusClass = ['bg-gray-600', 'bg-red-600', 'bg-green-600', 'bg-blue-600'];
-        this.statusTextClass = ['text-white', 'text-white', 'text-black', 'text-white'];
+        this.statusClass = ['bg-gray-600', 'bg-red-600', 'bg-green-600', 'bg-blue-800'];
+        this.statusTextClass = ['text-gray-200', 'text-white', 'text-black', 'text-gray-200'];
         this.bets = await getMyBets();
         this.matchs = await getMatches();
         this.bets.forEach((bet) => {

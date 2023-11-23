@@ -6,8 +6,10 @@
                 <tr>
                     <th class="table-cell">Position</th>
                     <th class="table-cell">Joueur</th>
-                    <th class="table-cell">Paris Parfaits</th>
-                    <th class="table-cell">Paris Corrects</th>
+                    <th class="table-cell">Nombre de paris</th>
+                    <th class="table-cell">Paris parfaits</th>
+                    <th class="table-cell">Paris corrects</th>
+                    <th class="table-cell">Paris incorrects</th>
                     <th class="table-cell">Points</th>
                 </tr>
             </thead>
@@ -22,8 +24,10 @@
                     <td class="table-cell" :class="{ 'font-bold': player.id === currentUser.id }">
                         {{ `${player.first_name} ${player.last_name}` }}
                     </td>
+                    <td class="table-cell">{{ player?.bet_count }}</td>
                     <td class="table-cell">{{ player?.perfect_bets }}</td>
                     <td class="table-cell">{{ player?.correct_bets }}</td>
+                    <td class="table-cell">{{ player?.incorrect_bets }}</td>
                     <td class="table-cell">{{ player?.points }}</td>
                 </tr>
             </tbody>
