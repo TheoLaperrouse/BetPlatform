@@ -46,29 +46,31 @@ export async function updateStatus(matches) {
         const bets = await getBets();
         for (const match of matches) {
             const filteredBets = bets.filter((bet) => bet.match_id === match.matchId);
-            let score = match?.score;
-            const scoreNull = score[0] === null && score[1] === null;
 
-            for (let bet of filteredBets) {
-                let status = 0;
-                const { id, bet_score } = bet;
-                if (!scoreNull) {
-                    const matchVicIndex = score[0] > score[1] ? 0 : 1;
-                    const betVicIndex = bet_score[0] > bet_score[1] ? 0 : 1;
-
-                    if (_.isEqual(bet_score, match.score)) {
-                        status = 3;
-                    } else if (matchVicIndex === betVicIndex) {
-                        status = 2;
-                    } else {
-                        status = 1;
-                    }
-                    await pool.query({
-                        text: 'UPDATE public.bets SET status=$1 WHERE id=$2',
-                        values: [status, id],
-                    });
-                }
+            if (_.isNil(match?.score[0]) && _.isNil(match?.score[1])) {
+                continue;
             }
+
+            const matchVicIndex = match.score[0] > match.score[1] ? 0 : 1;
+
+            filteredBets.forEach(async (bet) => {
+                const { id, bet_score } = bet;
+                const betVicIndex = bet_score[0] > bet_score[1] ? 0 : 1;
+                let status = 0;
+
+                if (_.isEqual(bet_score, match.score)) {
+                    status = 3;
+                } else if (matchVicIndex === betVicIndex) {
+                    status = 2;
+                } else {
+                    status = 1;
+                }
+
+                await pool.query({
+                    text: 'UPDATE public.bets SET status=$1 WHERE id=$2',
+                    values: [status, id],
+                });
+            });
         }
         console.log('Statuts bien mis à jour');
     } catch (err) {

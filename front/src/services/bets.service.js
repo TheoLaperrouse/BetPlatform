@@ -74,7 +74,7 @@ export const sendBet = async (betsData) => {
     return bets;
 };
 
-export const updateBet = async (betId, betScore) => {
+export const updateBet = async (betId, bet_score) => {
     const token = localStorage.getItem('jwtToken');
     const response = await fetch(`${baseURL}/bets/${betId}`, {
         method: 'PUT',
@@ -82,7 +82,7 @@ export const updateBet = async (betId, betScore) => {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ score_bet: betScore }),
+        body: JSON.stringify({ bet_score }),
     });
     if (!response.ok) {
         return Toast.fire({

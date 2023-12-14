@@ -1,6 +1,6 @@
 <template>
-    <div class="menu top-0 left-0 w-60 h-screen bg-gray-800 text-white">
-        <ul class="list-none p-0 mt-4">
+    <div class="menu bg-gray-800 text-white min-h-screen">
+        <ul class="fixed list-none p-0 mt-4">
             <li class="py-4 ml-6" v-for="(link, index) in menuLinks" :key="index">
                 <router-link
                     :class="{ 'text-indigo-400': $route.path === link.to }"
@@ -25,12 +25,6 @@
             >
                 <font-awesome-icon :icon="faSignOutAlt" />
             </button>
-            <!-- <button
-                @click="toggleMenu"
-                class="absolute bottom-4 left-42 w-10 h-10 text-white bg-gray-600 rounded-full hover:bg-gray-700 focus:outline-none"
-            >
-                <font-awesome-icon :icon="menuClosed ? faArrowRight : faArrowLeft" />
-            </button> -->
         </div>
     </div>
 </template>
@@ -55,7 +49,6 @@ export default {
     },
     data() {
         return {
-            menuClosed: localStorage.getItem('menuClosed') === 'true' || false,
             menuLinks: [
                 { to: '/', text: 'Accueil', icon: faHome },
                 { to: '/matchs', text: 'Matchs', icon: faTableTennisPaddleBall },
@@ -76,10 +69,6 @@ export default {
         logout() {
             localStorage.removeItem('jwtToken');
             this.$router.push('/signin');
-        },
-        toggleMenu() {
-            this.menuClosed = !this.menuClosed;
-            localStorage.setItem('menuClosed', this.menuClosed);
         },
     },
 };
