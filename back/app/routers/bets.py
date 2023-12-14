@@ -1,10 +1,13 @@
 from fastapi import APIRouter, Depends, Header, HTTPException
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import joinedload
 
 from app.auth import JWTBearer, decodeJWT
 from app.database import SessionLocal
 from app.models.bet import Bet
-from app.schemas.bet import BetCreate
+from app.models.match import Match
+from app.schemas.bet import BetCreate, BetUpdate
+
 
 db = SessionLocal()
 
@@ -26,8 +29,14 @@ def get_my_bets(authorization: str = Header(None)):
     '''Get my bets'''
     token = authorization.split("Bearer ")[1]
     user = decodeJWT(token)
-    bets = db.query(Bet).filter(
-        Bet.user_id == user['id']).order_by(Bet.created_at.desc()).all()
+    bets = (
+        db.query(Bet)
+        .join(Bet.match)
+        .options(joinedload(Bet.match))
+        .filter(Bet.user_id == user['id'])
+        .order_by(Match.match_date.asc())
+        .all()
+    )
     return bets
 
 
@@ -51,13 +60,12 @@ def create_bet(bet_data: BetCreate, authorization: str = Header(None)):
 
 
 @router.put("/{bet_id}",  dependencies=[Depends(JWTBearer())])
-def update_bet(score_bet, bet_id: str):
+def update_bet(bet: BetUpdate, bet_id: str):
     '''Update a bet'''
     db_bet = db.query(Bet).filter(Bet.id == bet_id).first()
     if not db_bet:
         raise HTTPException(status_code=404, detail="Pari non trouvé")
-    setattr(db_bet, "score_bet", score_bet)
-
+    setattr(db_bet, "bet_score", bet.bet_score)
     db.commit()
     db.refresh(db_bet)
     return db_bet

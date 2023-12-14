@@ -8,6 +8,11 @@ class BetBase(BaseModel):
     match_id: str
     user_id: int
 
+
 class BetCreate(BaseModel):
     bet_score: List[int]
     match_id: str
+
+
+class BetUpdate(BaseModel):
+    bet_score: List[int]
