@@ -1,3 +1,15 @@
+# [1.12.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.11.0...v1.12.0) (2023-12-14)
+
+
+### Bug Fixes
+
+* Fix bet update ([91a056c](https://github.com/TheoLaperrouse/BetPlatform/commit/91a056c2bfe54e77d4f6d1dd371cfbc681be2beb))
+
+
+### Features
+
+* Display date in bet and match / Fonctional App ([9db3a92](https://github.com/TheoLaperrouse/BetPlatform/commit/9db3a927129073192e882117d4bd3279d871c436))
+
 # [1.11.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.10.0...v1.11.0) (2023-11-23)
 
 
