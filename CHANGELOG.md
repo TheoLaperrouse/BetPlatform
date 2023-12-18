@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.12.0...v1.12.1) (2023-12-14)
+
+
+### Bug Fixes
+
+* updating libraries ([03f7bb2](https://github.com/TheoLaperrouse/BetPlatform/commit/03f7bb2685a3fffaf34cff742e3621a8787dc438))
+
 # [1.12.0](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.11.0...v1.12.0) (2023-12-14)
 
 
