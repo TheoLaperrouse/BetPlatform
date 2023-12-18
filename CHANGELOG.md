@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.12.1...v1.12.2) (2023-12-18)
+
+
+### Bug Fixes
+
+* Fix sort / config ([014c0fb](https://github.com/TheoLaperrouse/BetPlatform/commit/014c0fb605d78faad97ad28ba0cadc69779c379b))
+
 ## [1.12.1](https://github.com/TheoLaperrouse/BetPlatform/compare/v1.12.0...v1.12.1) (2023-12-14)
 
 
