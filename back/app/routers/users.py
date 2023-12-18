@@ -26,9 +26,9 @@ def get_users():
     users = []
     for user in users_data:
         bets = db.query(Bet).filter(Bet.user_id == str(user[0])).all()
-        perfect_bets = len(list(filter(lambda bet: bet.status == 3, bets)))
-        correct_bets = len(list(filter(lambda bet: bet.status == 2, bets)))
-        incorrect_bets = len(list(filter(lambda bet: bet.status == 1, bets)))
+        perfect_bets = sum(bet.status == 3 for bet in bets)
+        correct_bets = sum(bet.status == 2 for bet in bets)
+        incorrect_bets = sum(bet.status == 1 for bet in bets)
 
         id, first_name, last_name = user
         users.append({
@@ -42,7 +42,7 @@ def get_users():
             "points": (2 * perfect_bets) + (1 * correct_bets)
 
         })
-    return users
+    return sorted(users, key=lambda x: x['points'], reverse=True)
 
 
 @router.get("/me", dependencies=[Depends(JWTBearer())])
